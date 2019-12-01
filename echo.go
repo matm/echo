@@ -826,9 +826,8 @@ func (ln tcpKeepAliveListener) Accept() (c net.Conn, err error) {
 		return
 	} else if err = c.(*net.TCPConn).SetKeepAlive(true); err != nil {
 		return
-	} else if err = c.(*net.TCPConn).SetKeepAlivePeriod(3 * time.Minute); err != nil {
-		return
 	}
+	_ = c.(*net.TCPConn).SetKeepAlivePeriod(3 * time.Minute)
 	return
 }
 
